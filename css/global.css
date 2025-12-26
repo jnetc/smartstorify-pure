@@ -1,0 +1,262 @@
+@import url('./components/buttons.css');
+@import url('./components/links.css');
+/* @import url('./components/error-message.css'); */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* outline: 1px solid red; */
+  /* overscroll-behavior: contain; */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  /* scroll-behavior: smooth; */
+  scrollbar-gutter: stable;
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* html::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scrollbar-width: none;
+  scrollbar-gutter: auto;
+}
+
+@media screen and (height <= 48rem) {
+  html::-webkit-scrollbar {
+    display: initial;
+  }
+  html {
+    scrollbar-width: auto;
+  }
+}
+@media screen and (width <= 100rem) {
+  html::-webkit-scrollbar {
+    display: block;
+  }
+  html {
+    scrollbar-width: auto;
+  }
+} */
+
+body {
+  --outside: auto;
+  --body-size: 52rem;
+  /* --body-size: 1fr; */
+  min-block-size: 100dvh;
+  display: grid;
+  grid-template-columns: var(--outside) repeat(2, minmax(320px, var(--body-size))) var(--outside);
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-areas:
+    '. header main .'
+    '. aside main .'
+    '. footer main .';
+  column-gap: var(--gap-56);
+  position: relative;
+  overflow-y: auto;
+  color: var(--black);
+  background-color: var(--white);
+  font-family: system-ui, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; */
+  font-weight: 400;
+  text-rendering: optimizeSpeed;
+  scrollbar-gutter: stable;
+
+  @media screen and (75rem <= width <= 100rem) {
+    /* --outside: clamp(var(--gap-20), 6vw, var(--gap-128)); */
+    /* margin-inline: auto; */
+    &:has(main.video) {
+      grid-template-columns: var(--outside) repeat(2, minmax(320px, var(--body-size)));
+      grid-template-areas:
+        '. header main main'
+        '. aside main main'
+        '. footer main main';
+    }
+  }
+  @media screen and (width <= 40rem) {
+    --outside: 0;
+    column-gap: var(--gap-20);
+
+    &:has(main.video) {
+      row-gap: 0;
+    }
+    /* &:has(main.video) main {
+      display: none;
+    } */
+  }
+
+  @media screen and (height <= 48rem) {
+    grid-template-columns: var(--outside) minmax(320px, var(--body-size)) var(--outside);
+    grid-template-areas:
+      '. header .'
+      '. aside .'
+      '. main .'
+      '. footer .';
+    row-gap: var(--gap-64);
+    column-gap: var(--gap-20);
+  }
+
+  @media screen and (width <= 85rem) {
+    grid-template-columns: var(--outside) minmax(320px, var(--body-size)) var(--outside);
+    grid-template-areas:
+      '. header .'
+      '. aside .'
+      '. main .'
+      '. footer .';
+    /* row-gap: var(--gap-64); */
+    column-gap: var(--gap-20);
+  }
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+input,
+textarea,
+fieldset,
+select,
+button,
+dialog {
+  border: none;
+}
+
+input {
+  inline-size: 100%;
+  &::placeholder {
+    color: var(--grey-200);
+  }
+}
+
+input:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 1.5px solid var(--primary);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 0.25rem;
+}
+
+select,
+button {
+  appearance: none;
+  background-color: transparent;
+  outline-color: var(--primary);
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-inline-size: 100%;
+}
+
+img,
+svg,
+label,
+legend,
+button {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* GLOBAL TEXT */
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  line-height: 1.2;
+}
+
+p,
+strong {
+  line-height: 1.4;
+}
+
+/* input,
+textarea {
+  font-weight: 300;
+} */
+
+p,
+figcaption {
+  text-wrap: pretty;
+  /* max-inline-size: 75ch; */
+}
+
+p,
+label,
+li,
+time {
+  color: var(--grey-500);
+  font-size: var(--font-16);
+}
+
+/* Margin top to make gap as 80px down */
+:target {
+  scroll-margin-top: var(--gap-80);
+}
+
+ul {
+  list-style-type: none;
+}
+
+strong {
+  font-weight: bold;
+  /* color: var(--grey-500); */
+}
+
+blockquote {
+  hanging-punctuation: first last;
+}
+
+svg[class*='icon'] {
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 959px) {
+  :root {
+    --body-padding: 1rem;
+  }
+}
+
+.wa-color {
+  color: var(--wa);
+}
+.p-color {
+  color: var(--primary);
+}
+.b-color {
+  color: var(--black);
+}
+.accident-color {
+  color: var(--accident);
+}

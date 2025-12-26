@@ -1436,6 +1436,123 @@ img {
 }
 
 /* ========================================
+   Orbit Rotation
+   ======================================== */
+.orbit-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 10px auto 0;
+}
+
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 157, 188, 0.2);
+  border: 1px solid rgba(0, 157, 188, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.orbit-center svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary);
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.orbit-ring-1 {
+  width: 90px;
+  height: 90px;
+  margin-left: -45px;
+  margin-top: -45px;
+  animation: orbit-spin 20s linear infinite;
+}
+
+.orbit-ring-2 {
+  width: 140px;
+  height: 140px;
+  margin-left: -70px;
+  margin-top: -70px;
+  animation: orbit-spin 25s linear infinite;
+}
+
+.orbit-ring-3 {
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  margin-top: -100px;
+  animation: orbit-spin 35s linear infinite;
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orbit-icon {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  margin-top: -14px;
+  background: rgba(13, 13, 13, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-icon svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-text-70);
+  animation: icon-self-spin 4s linear infinite;
+}
+
+@keyframes icon-self-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Ring 1: 4 icons at 0°, 90°, 180°, 270° (radius = 45px) */
+.orbit-ring-1 .orbit-icon:nth-child(1) { top: 0; left: 50%; }
+.orbit-ring-1 .orbit-icon:nth-child(2) { top: 50%; left: 100%; }
+.orbit-ring-1 .orbit-icon:nth-child(3) { top: 100%; left: 50%; }
+.orbit-ring-1 .orbit-icon:nth-child(4) { top: 50%; left: 0; }
+
+/* Ring 2: 4 icons at 45°, 135°, 225°, 315° (radius = 70px) */
+.orbit-ring-2 .orbit-icon:nth-child(1) { top: 14.6%; left: 85.4%; }
+.orbit-ring-2 .orbit-icon:nth-child(2) { top: 85.4%; left: 85.4%; }
+.orbit-ring-2 .orbit-icon:nth-child(3) { top: 85.4%; left: 14.6%; }
+.orbit-ring-2 .orbit-icon:nth-child(4) { top: 14.6%; left: 14.6%; }
+
+/* Ring 3: 8 icons at 0°, 45°, 90°, 135°, 180°, 225°, 270°, 315° (radius = 100px) */
+.orbit-ring-3 .orbit-icon:nth-child(1) { top: 0; left: 50%; }
+.orbit-ring-3 .orbit-icon:nth-child(2) { top: 14.6%; left: 85.4%; }
+.orbit-ring-3 .orbit-icon:nth-child(3) { top: 50%; left: 100%; }
+.orbit-ring-3 .orbit-icon:nth-child(4) { top: 85.4%; left: 85.4%; }
+.orbit-ring-3 .orbit-icon:nth-child(5) { top: 100%; left: 50%; }
+.orbit-ring-3 .orbit-icon:nth-child(6) { top: 85.4%; left: 14.6%; }
+.orbit-ring-3 .orbit-icon:nth-child(7) { top: 50%; left: 0; }
+.orbit-ring-3 .orbit-icon:nth-child(8) { top: 14.6%; left: 14.6%; }
+
+/* ========================================
    Utilities
    ======================================== */
 .sr-only {
@@ -1486,7 +1603,9 @@ img {
   }
 
   .badge::before,
-  .typewriter {
+  .typewriter,
+  .orbit-ring,
+  .orbit-icon svg {
     animation: none;
   }
 }
